@@ -2,7 +2,6 @@
   "name": "aws",
   "version": "1.0.0",
   "description": "",
-  "master": "index.js",
   "scripts": {
     "build": "npm run build" 
   },
