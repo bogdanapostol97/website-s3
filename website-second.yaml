@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyPipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt MyCodeBuildRole.Arn  # Reference the service role created in Step 1.3
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: SourceAction
+              ActionTypeId:
+                Category: Source
+                Provider: CodeCommit  # Adjust provider based on your source control (e.g., GitHub)
+              Configuration:
+                RepositoryName: MyStaticWebsiteRepo  # Replace with your repository name
+                Branch: main  # Adjust branch name as needed
+                OutputVariables:
+                  - Name: BuildStartedBy
+                    Value: !Sub "${CODEBUILD_BUILD_STARTED_BY}"  # Capture username
+        - Name: Build
+          Actions:
+            - Name: BuildAction
+              ActionTypeId:
+                Category: Build
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: MyStaticWebsiteBuilder  # Reference your CodeBuild project name
+        - Name: Deploy
+          Actions:
+            - Name: DeployAction
+              ActionTypeId:
+                Category: Deploy
+                Provider: S3
+              Configuration:
+                Bucket: MyStaticWebsiteBucket  # Reference your existing S3 bucket name
+                KeyPrefix: website/  # Optional prefix for deployed files in S3
+ 
+  MyCodeBuildRole:  # Reference the service role you created in Step 1.3
+    Type: AWS::IAM::Role
+    # ... Role policy definition (refer to Step 1.3 for details)
+ 
+  MyGitHubConnection:  # Define a connection to your GitHub repository
+    Type: AWS::CodePipeline::Connections
+    Properties:
+      Name: MyGitHubConnection
+      Type: GitHub
+      # ... Connection details (refer to Step 5 for details)
