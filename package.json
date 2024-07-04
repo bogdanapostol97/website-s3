@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"  // Replace with your actual build command(s)
+    "build": "npm run build"  // Replace with your actual build command(s)
   },
   "keywords": [],
   "author": "",
