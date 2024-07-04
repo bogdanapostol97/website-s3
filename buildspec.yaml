@@ -6,7 +6,7 @@ phases:
       - npm install # Replace with your installation command (e.g., npm install)
   build:
     commands:
-      - npm run build  # Replace with your build command (e.g., npm run build)
+      - npm build  # Replace with your build command (e.g., npm run build)
       
   post_build:
     commands:
