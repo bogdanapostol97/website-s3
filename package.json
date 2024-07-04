@@ -2,9 +2,9 @@
   "name": "aws",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "master": "index.js",
   "scripts": {
-    "build": "npm build" 
+    "build": "npm run build" 
   },
   "keywords": [],
   "author": "",
