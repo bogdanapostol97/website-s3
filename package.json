@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build"
+    "build": "webpack"  // Replace with your actual build command(s)
   },
   "keywords": [],
   "author": "",
